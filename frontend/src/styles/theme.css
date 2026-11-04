@@ -1,0 +1,53 @@
+:root {
+    /* ==========
+    COLORS
+    ============ */
+    /* Main colors*/
+    --color-primary:  #BDA6CE;
+    --color-secondary:#B4D3D9;
+    --color-danger: #9B8EC7;
+
+    /* Background */
+    --color-background: #F2EAE0;
+    --color-surface: #B4D3D9;
+
+    /* Text */
+    --color-text: #9B8EC7;
+    --color-muted: #B4D3D9;
+
+    /* Borders */
+    --color-border: #9B8EC7;
+
+/* ==================
+DARK MODE
+===================== */
+
+
+
+
+/* =====================
+Spacing System
+====================== */
+
+
+--spacing-xs: 4px;
+--spacing-sm: 8px;
+--spacing-md: 16px;
+--spacing-lg: 24px;
+--spacing-xl: 32px;
+--spacing-2xl: 48px;
+}
+
+.dark {
+    --color-primary: #A5A8D0;
+    --color-secondary: #D552A3;
+    --color-danger: #8E1EA2;
+
+    --color-background: #20212B;
+    --color-surface: #343644;
+
+    --color-text: #FFFFFF;
+    --color-text-muted: #C5C5CE;
+
+    --color-border: #4A4B5C;
+}

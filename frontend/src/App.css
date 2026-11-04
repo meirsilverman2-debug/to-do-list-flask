@@ -1,0 +1,266 @@
+.app-container {
+  width: min(100% - 32px, 1000px);
+  margin-inline: auto;
+  padding-block: var(--spacing-xl);
+}
+
+.todo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.todo-header {
+  color: white;
+  text-shadow:0 0 10px rgb(248, 245, 248), 0 0 15px purple, 0 0 25px black;
+  font-size: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.todo-header h1{
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.todo-card {
+ display: flex;
+ flex-direction: column;
+ gap: var(--spacing-sm);
+
+ padding: var(--spacing-lg);
+
+ background-color: var(--color-surface);
+ color: var(--colore-text);
+
+ border: 1px solid var(--color-border);
+ border-radius: 8px;
+ box-shadow: 2px 4px 16px rgba(0, 0, 0, 0.655);
+
+ transition: transform 01s ease;
+ cursor: auto;
+
+}
+
+.todo-card:hover {
+  transform: scale(1.03);
+  cursor: auto;
+}
+
+
+.todo-action {
+  display: flex;
+  justify-content: space-evenly;
+  gap: var(--spacing-sm);
+  margin-top: auto;
+}
+
+.todo-description {
+  color: var(--color-muted);
+}
+/* ==================
+  TODO EDIT FORM
+================== */
+
+.todo-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+/* Lable css */
+
+/* =================
+    BUTTON BASE
+ =================*/
+
+.btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* ==================
+ BUTTON VARIANTS
+ ================== */
+
+/* Primary button */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* Secondary button */
+.btn-secondary {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* Danger button */
+.btn-danger {
+  background-color: var(--color-danger);
+  color: white;
+}
+
+/* ===============
+
+HOVER STATES
+
+==================*/
+
+.btn-primary:hover {
+  background-color: #505577;
+}
+
+.btn-secondary:hover {
+  background-color: #6c9c84;
+}
+
+.btn-danger:hover {
+  background-color: #c96850;
+}
+
+/* ===============
+FOCUS STATE
+=================*/
+
+.btn:focus-visible {
+  outline: 3px solid var(--color-primary );
+  outline-offset: 3px;
+}
+
+/* ===============
+DISABLED STATE
+================ */
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==============
+INPUT BASE
+=============== */
+
+.input{
+  width: 100%;
+  padding: 10px 12px;
+
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+
+  background-color: var(--color-surface);
+  color: var(--colore-text);
+
+  font-size: 14px;
+  font-family: inherit;
+
+  transition: border-color 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+/* Placeholder */
+.input {
+  color: var(--colore-text);
+  opacity: 0.9;
+}
+
+/* Focus */
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgb(61 64 91 / 15%);
+}
+
+/* Disabled */
+
+.input:disabled {
+  background-color: #EEEEEE;
+  cursor: not-allowed;
+}
+
+/* =============
+ADD TODO FORM CSS CLASS
+============== */
+
+.todo-add-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  width: 100%;
+  max-width: 450px;
+
+  margin: 30px auto;
+  padding: 25px;
+
+  border: 1px solid #ccc;
+  border-radius: 12px;
+
+  background: linear-gradient( lightblue, purple);
+  color: white;
+  box-shadow: 
+  0 0 5px lightblue,
+  0 0 10px purple,
+  0 0 15px white;
+}
+
+.todo-add-form h2 {
+  margin: 0 0 10px;
+  text-align: center;
+}
+
+.todo-add-form label {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+
+  font-weight: 600;
+}
+
+.todo-add-form input {
+  width: 100%;
+  padding: 10px;
+
+  border: 1px solid #ccc;
+  border-radius: 6px;
+
+  font-size: 15px;
+  color: var(--color-primary);
+  opacity: 0.5;
+  
+}
+
+.todo-add-form .btn {
+  width: 100%;
+  padding: 10px;
+  transition:box-shadow 0.3s ease, transform 0.9s ease;
+
+  
+}
+
+.todo-add-form .btn:hover {
+  transform: perspective(800px) scale(1.04);
+  box-shadow: 0 0 10px white, 0 0 25px purple;
+  background: linear-gradient(to bottom, white, purple, lightblue);
+}
+
+
+
+
