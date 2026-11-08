@@ -6,12 +6,16 @@ import "./styles/global.css";
 
 import App from './App.tsx';
 import { MantineProvider } from '@mantine/core';
+import { BrowserRouter } from 'react-router';
 
 
 // Make sure to wrap the app componnent with mantain provider!
 createRoot(document.getElementById('root')!).render(
+  
   <MantineProvider> 
+  <BrowserRouter>
     <App />
+  </BrowserRouter>
   </MantineProvider>
 
 )

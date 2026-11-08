@@ -1,0 +1,8 @@
+#notFound-message{
+    background: linear-gradient( 90deg, lightblue, white,  purple);
+    background-clip: text;
+    color: transparent;
+    text-align: center;
+
+    
+}

@@ -13,7 +13,7 @@
 .todo-header {
   color: white;
   text-shadow:0 0 10px rgb(248, 245, 248), 0 0 15px purple, 0 0 25px black;
-  font-size: 20px;
+  font-size: 10px;
 
   display: flex;
   justify-content: center;
