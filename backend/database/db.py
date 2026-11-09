@@ -23,7 +23,7 @@ todos_collection = db["todos"]
 client.admin.command("ping")
 print("MongoDB connected successfully!")
 
-print("Database name:", db.name)
-print("Collection name:", todos_collection.name)
-print("Documents count:", todos_collection.count_documents({}))
-print("Documents:", list(todos_collection.find()))
+# print("Database name:", db.name)
+# print("Collection name:", todos_collection.name)
+# print("Documents count:", todos_collection.count_documents({}))
+# print("Documents:", list(todos_collection.find()))

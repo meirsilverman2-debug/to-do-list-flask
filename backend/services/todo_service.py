@@ -39,13 +39,10 @@ def get_todo_by_id_service(todo_id):
 def create_todo_service(todo_data):
     result = todos_collection.insert_one(todo_data)
 
-    todo = todos_collection.find_one({
-        "_id": result.inserted_id
-    })
+    todo_data.pop("_id", None)
+    todo_data["id"] = str(result.inserted_id)
 
-    todo["id"] = str(todo.pop("_id"))
-
-    return todo
+    return todo_data
 
 
 # 4 PATCH (update todo):
@@ -71,6 +68,7 @@ def update_todo_service(todo_id, update_data):
 def delete_todo_service(todo_id):
     if not ObjectId.is_valid(todo_id):
         return False
+    
 
     todo = todos_collection.find_one_and_delete({
         "_id": ObjectId(todo_id)

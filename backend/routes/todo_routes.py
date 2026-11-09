@@ -68,10 +68,16 @@ def update_todo_route(todo_id):
     return jsonify(updated_todo), 200
 
 
+
+
+# todo add indication for getting false from the service:
 # DELETED (delete an existing todo):
 @todo_bp.route("/<todo_id>", methods=["DELETE"])
 def delete_todo_route(todo_id):
     deleted_todo = delete_todo_service(todo_id)
+
+    if deleted_todo == False:
+        return jsonify({"error": "Bad request"}), 400
 
     if deleted_todo is None:
         return jsonify({"error": "Todo not found"}), 404
