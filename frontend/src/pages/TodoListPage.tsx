@@ -70,8 +70,17 @@ export default function TodoListPage() {
 
   useEffect(() => {
     async function loadTodos() {
-      const data = await getAllTodos();
-      setTodos(data);
+        try {
+            setLoading(true)
+            const data = await getAllTodos();
+            setTodos(data);
+        } catch (error) {
+            console.error(error);
+        }
+        finally {
+            setLoading(false)
+        }
+     
     }
 
     loadTodos();
@@ -172,10 +181,13 @@ export default function TodoListPage() {
  ===============================================*/}
         
       <div className="todo-grid">
-        {todos.map((todo) => (
+        {loading ? (<Spinner/>) :
+        
+        todos.map((todo) => (
           <div className="todo-card" key={todo.id}>
             <Count/>
             <SomthingMantain/>
+        
             {editingTodoId === todo.id ? (
               <div className="todo-edit-form">
                 <label>
@@ -253,6 +265,7 @@ export default function TodoListPage() {
             </div>
           </div>
         ))}
+    
       </div>
     </div>
     </>

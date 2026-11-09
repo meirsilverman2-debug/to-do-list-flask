@@ -1,0 +1,33 @@
+/* ===============
+Loading block CSS
+================== */
+.lodding-todo-spinner{
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, white, rgb(198, 159, 198));
+    box-shadow: 0 0 15px white, 0 0 20px purple;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+/*====================================================================
+for moving the saction into the middle of the page how amazing is this
+=======================================================================  */
+.loader-display-section{
+    display: flex;
+    justify-content: center;
+
+}
+
+/* =======================================================
+The loading header which means the word beside the spinner
+=========================================================== */
+.loader-header{
+    background: linear-gradient(to right, lightblue, purple);
+    background-clip: text;
+    color: transparent;
+}
