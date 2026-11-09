@@ -6,6 +6,7 @@ import { themeAtom } from "../atoms/themeAtom";
 import Count from "../components/Count/Count";
 import SomthingMantain from "../components/SomthingMantain/SomthingMantain";
 import type { Todo } from "../types/todo";
+import Spinner from "../components/Spinner/Spinner";
 
 export default function TodoListPage() {
  
@@ -16,7 +17,8 @@ export default function TodoListPage() {
   const [editingDescription, setEditingDescription] = useState<string>("");
   const [editingCompleted, setEditingCompleted] = useState<boolean>(false);
   const [newTodoTitle, setNewTodoTitle] = useState<string>("");
-  const [newTodoDescription, setNewTodoDescription] = useState<string>("")
+  const [newTodoDescription, setNewTodoDescription] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(true);
 
 
   // Add todo function:
@@ -92,6 +94,8 @@ export default function TodoListPage() {
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
   }, [theme]);
+
+
   return (
     <>
     <div className="app-container">
@@ -166,7 +170,7 @@ export default function TodoListPage() {
 {/*=============================================
  This is map on each todo to create a card to it: 
  ===============================================*/}
-
+        
       <div className="todo-grid">
         {todos.map((todo) => (
           <div className="todo-card" key={todo.id}>
