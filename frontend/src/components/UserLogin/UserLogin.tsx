@@ -7,7 +7,7 @@ export default function UserLogin() {
 
   return (
     <div>
-        <form className="loginFormSection" action="/">
+        <form className="loginFormSection" action="/options">
         <h1 className="login-form-main-header">Please enter the login form</h1>
 
         <label className="login-lable">

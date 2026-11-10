@@ -1,0 +1,122 @@
+import { useAtom } from "jotai";
+import { useState } from "react";
+import { editingTodoAtom } from "../../atoms/todoAtom";
+import type { Todo } from "../../types/todo";
+import { updateTodo } from "../../services/todoService";
+import TodoCard from "../TodoCard/TodoCard";
+
+
+interface TodoEditFormProps {
+    todo: Todo
+}
+
+export default function TodoEditForm({todo}: TodoEditFormProps) {
+  const [todos, setTodos] = useState<Todo[]>([]);
+  const [editingTodoId, setEditingTodoId] = useAtom(editingTodoAtom);
+  const [editTitle, setEditTitle] = useState<string>("");
+  const [editingDescription, setEditingDescription] = useState<string>("");
+  const [editingCompleted, setEditingCompleted] = useState<boolean>(false);
+
+  async function handleSave(todoId: string) {
+    try {
+      const updatedTodo = await updateTodo(todoId, {
+        title: editTitle,
+        description: editingDescription,
+        completed: editingCompleted,
+      });
+
+      setTodos((currentTodos) =>
+        currentTodos.map((todo) => (todo.id === todoId ? updatedTodo : todo)),
+      );
+
+      setEditingTodoId(null);
+    } catch (error) {
+      console.error("Failed to update todo:", error);
+    }
+  }
+
+  function handelEditClick(todo: Todo) {
+    setEditingTodoId(todo.id);
+    setEditTitle(todo.title);
+    setEditingDescription(todo.description ?? "");
+    setEditingCompleted(todo.completed);
+  }
+
+
+
+  
+  return (
+  <div>
+    <div className="todo-action">
+              <button
+                className="btn btn-secondary"
+                onClick={() => handelEditClick(todo)}
+              >
+                EDIT
+              </button>
+            </div>
+
+
+
+             {editingTodoId === todo.id ? (
+              <div className="todo-edit-form">
+                <label>
+                  Title:
+                  <input
+                    className="input"
+                    type="text"
+                    value={editTitle}
+                    placeholder="Enter a title"
+                    onChange={(e) => setEditTitle(e.target.value)}
+                  />
+                </label>
+
+                <label>
+                  Description:
+                  <input
+                    className="input"
+                    type="text"
+                    value={editingDescription}
+                    placeholder="Enter a description"
+                    onChange={(e) => setEditingDescription(e.target.value)}
+                  />
+                </label>
+
+                <label>
+                  Completed:
+                  <input
+                    className="input"
+                    type="checkbox"
+                    checked={editingCompleted}
+                    onChange={(e) => setEditingCompleted(e.target.checked)}
+                  />
+                </label>
+
+                <button
+                  className="btn btn-primary "
+                  onClick={() => handleSave(todo.id)}
+                >
+                  SAVE
+                </button>
+                <button
+                className="btn btn-secondary"
+                onClick={() => {
+                  setEditingTodoId(null);
+                  setEditTitle("");
+                  setEditingDescription("");
+                  setEditingCompleted(false)
+                }}
+                >
+                  CANCEL
+                </button>
+              </div>
+            ) : (
+              <>
+              
+               </>
+            )}
+
+    
+  </div>
+  )
+}
