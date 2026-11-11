@@ -2,7 +2,7 @@ import { useAtom } from "jotai";
 import { useState } from "react";
 import { editingTodoAtom } from "../../atoms/todoAtom";
 import type { Todo } from "../../types/todo";
-import { updateTodo } from "../../services/todoService";
+import { deleteTodo, updateTodo } from "../../services/todoService";
 import TodoCard from "../TodoCard/TodoCard";
 
 
@@ -42,12 +42,33 @@ export default function TodoEditForm({todo}: TodoEditFormProps) {
     setEditingCompleted(todo.completed);
   }
 
+  async function handlDelete(todoId: string) {
+    try {
+      await deleteTodo(todoId);
+
+      setTodos((currentTodos) =>
+        currentTodos.filter((todo) => todo.id !== todoId),
+      );
+    } catch (error) {
+      console.error("Failed to delete todo;", error);
+    }
+  }
+
 
 
   
   return (
   <div>
     <div className="todo-action">
+
+              
+              <button
+                className="btn btn-danger"
+                onClick={() => handlDelete(todo.id)}
+              >
+                Delete
+              </button>
+
               <button
                 className="btn btn-secondary"
                 onClick={() => handelEditClick(todo)}
@@ -111,9 +132,7 @@ export default function TodoEditForm({todo}: TodoEditFormProps) {
                 </button>
               </div>
             ) : (
-              <>
-              
-               </>
+              <></>
             )}
 
     
