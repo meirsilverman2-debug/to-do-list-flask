@@ -1,15 +1,13 @@
 import { useAtom } from "jotai";
 import { addTodo } from "../../services/todoService";
-import { editingTodoAtom, isAddingTodoAtom } from "../../atoms/todoAtom";
-import { useEffect, useState } from "react";
-import type { Todo } from "../../types/todo";
+import { editingTodoAtom, isAddingTodoAtom, todoDescriptionAtoms, todosAtom, todoTitleAtom } from "../../atoms/todoAtom";
 import ThemeCss from "../ThemeCss/ThemeCss";
 
 export default function AddTodForm() {
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useAtom(todosAtom);
+  const [newTodoTitle, setNewTodoTitle] = useAtom(todoTitleAtom);
+  const [newTodoDescription, setNewTodoDescription] = useAtom(todoDescriptionAtoms);
   const [isAddTodo, setIsAddTodo] = useAtom(isAddingTodoAtom);
-  const [newTodoTitle, setNewTodoTitle] = useState<string>("");
-  const [newTodoDescription, setNewTodoDescription] = useState<string>("");
   const [editingTodoId, setEditingTodoId] = useAtom(editingTodoAtom);
 
   async function handleAddTodo() {
