@@ -1,6 +1,7 @@
 import { useAtom } from "jotai";
 import { themeAtom } from "../../atoms/themeAtom";
 import { useEffect } from "react";
+import { MdLightMode, MdOutlineLightMode } from "react-icons/md";
 
 export default function ThemeCss() {
   const [theme, setTheme] = useAtom(themeAtom);
@@ -14,7 +15,7 @@ export default function ThemeCss() {
         className="btn btn-primary"
         onClick={() => setTheme(theme === "light" ? "dark" : "light")}
       >
-        Switch to {theme === "light" ? "dark" : "light"} mode
+        {theme === "light" ? <MdLightMode /> : <MdOutlineLightMode />}
       </button>
     </div>
   );
