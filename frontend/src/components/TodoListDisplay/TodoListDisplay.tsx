@@ -3,10 +3,13 @@ import type { Todo } from "../../types/todo";
 import Spinner from "../Spinner/Spinner";
 import TodoCard from "../TodoCard/TodoCard";
 import { getAllTodos } from "../../services/todoService";
+import { useAtom } from "jotai";
+import { todosAtom } from "../../atoms/todoAtom";
+import { loadingAtom } from "../../atoms/loadingTom";
 
 export default function TodoListDisplay() {
-    const [todos, setTodos] = useState<Todo[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
+    const [todos, setTodos] = useAtom(todosAtom);
+    const [loading, setLoading] = useAtom(loadingAtom);
       
     useEffect(() => {
         async function loadTodos() {

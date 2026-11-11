@@ -1,9 +1,10 @@
 import { useAtom } from "jotai";
 import { useState } from "react";
-import { editingTodoAtom } from "../../atoms/todoAtom";
+import { editingTodoAtom, isAddingTodoAtom, todoDescriptionAtoms, todosAtom, todoTitleAtom } from "../../atoms/todoAtom";
 import type { Todo } from "../../types/todo";
 import { deleteTodo, updateTodo } from "../../services/todoService";
 import TodoCard from "../TodoCard/TodoCard";
+import { editCompletedAtom, editDescriptionAtom, editTitlAtom } from "../../atoms/editAtom";
 
 
 interface TodoEditFormProps {
@@ -11,11 +12,13 @@ interface TodoEditFormProps {
 }
 
 export default function TodoEditForm({todo}: TodoEditFormProps) {
-  const [todos, setTodos] = useState<Todo[]>([]);
+  
+  const [todos, setTodos] = useAtom(todosAtom);
   const [editingTodoId, setEditingTodoId] = useAtom(editingTodoAtom);
-  const [editTitle, setEditTitle] = useState<string>("");
-  const [editingDescription, setEditingDescription] = useState<string>("");
-  const [editingCompleted, setEditingCompleted] = useState<boolean>(false);
+  const [editTitle, setEditTitle] = useAtom(editTitlAtom);
+  const [editingDescription, setEditingDescription] = useAtom(editDescriptionAtom);
+  const [editingCompleted, setEditingCompleted] = useAtom(editCompletedAtom);
+  
 
   async function handleSave(todoId: string) {
     try {
