@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import type { Todo } from "../../types/todo";
 import Spinner from "../Spinner/Spinner";
 import TodoCard from "../TodoCard/TodoCard";

@@ -1,9 +1,7 @@
-import { useAtom } from "jotai";
-import { useState } from "react";
-import { editingTodoAtom, isAddingTodoAtom, todoDescriptionAtoms, todosAtom, todoTitleAtom } from "../../atoms/todoAtom";
+import { useAtom, useSetAtom } from "jotai";
+import { editingTodoAtom, todosAtom} from "../../atoms/todoAtom";
 import type { Todo } from "../../types/todo";
 import { deleteTodo, updateTodo } from "../../services/todoService";
-import TodoCard from "../TodoCard/TodoCard";
 import { editCompletedAtom, editDescriptionAtom, editTitlAtom } from "../../atoms/editAtom";
 
 
@@ -13,7 +11,7 @@ interface TodoEditFormProps {
 
 export default function TodoEditForm({todo}: TodoEditFormProps) {
   
-  const [todos, setTodos] = useAtom(todosAtom);
+  const setTodos = useSetAtom(todosAtom);
   const [editingTodoId, setEditingTodoId] = useAtom(editingTodoAtom);
   const [editTitle, setEditTitle] = useAtom(editTitlAtom);
   const [editingDescription, setEditingDescription] = useAtom(editDescriptionAtom);

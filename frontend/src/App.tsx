@@ -7,20 +7,17 @@ import LoginPage from "./pages/LoginPage.tsx";
 import NotFoundPage from "./pages/NotFoundPage.tsx";
 
 function App() {
-
-  
   return (
     <>
-  <Routes>
-  <Route element={<Layout/>}>
-  <Route path="/options" element={<HomePage/>}/>
-  <Route path="/todoList" element={<TodoListPage/>}/>
-  <Route path="/" element={<LoginPage/>}/>
-  <Route path="*" element={<NotFoundPage/>}/>
-  </Route>
-  </Routes>
-  </>
-   
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/options" element={<HomePage />} />
+          <Route path="/todoList" element={<TodoListPage />} />
+          <Route path="/" element={<LoginPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </>
   );
 }
 
