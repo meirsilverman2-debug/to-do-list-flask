@@ -15,7 +15,7 @@ todo_bp = Blueprint("todo", __name__, url_prefix="/todos")
 
 
 # GET (all todos):
-@todo_bp.route("/", methods=["GET"])
+@todo_bp.get("/") # more advenced way by mordechai:
 def get_all_todos_route():
 
     todos = get_all_todos_service()

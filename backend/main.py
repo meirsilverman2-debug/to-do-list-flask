@@ -1,7 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
 from routes.todo_routes import todo_bp
-import log.log_config
 
 app = Flask(__name__)
 
