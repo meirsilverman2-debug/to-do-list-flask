@@ -1,84 +1,69 @@
-from bson import ObjectId
-import logging
-from database.db import todos_collection
-from pymongo import ReturnDocument
+from flask import jsonify
+from DAL.todo_dal import TodosDal
 
-logger = logging.getLogger(__name__)
+class TodoSSercice:
 
-# CRUD + ONE (meaning get by ID):
+    # GET (all):
+    @staticmethod
+    def get_all_todos():
+        result = TodosDal.get_all_todos()
 
-# 1 GET (all todos):
-def get_all_todos_service():
-
-    todos = list(todos_collection.find())
-
-    for todo in todos:
-        todo["id"] = str(todo.pop("_id"))
-
-    return todos
+        return jsonify(result), 200
 
 
-# 2 GET (singal todo):
-def get_todo_by_id_service(todo_id):
-    if not ObjectId.is_valid(todo_id):
-        return None
+    # GET (by id):
+    @staticmethod
+    def get_todo_by_id(todo_Id):
+        result = TodosDal.get_todo_by_id(todo_Id)
 
-    todo = todos_collection.find_one({
-        "_id": ObjectId(todo_id)
-    })
+        if result is None:
+            return jsonify({"success": False, "error": "Not Found"}), 404
+        
 
-    if todo is None:
-        return None
+        return jsonify({"success": True, "result": result }), 200
 
-    todo["id"] = str(todo.pop("_id"))
-
-    return todo
-
-
-# 3 POST (create todo):
-def create_todo_service(todo_data):
-    result = todos_collection.insert_one(todo_data)
-
-    todo_data.pop("_id", None)
-    todo_data["id"] = str(result.inserted_id)
-
-    return todo_data
-
-
-# 4 PATCH (update todo):
-def update_todo_service(todo_id, update_data):
-    if not ObjectId.is_valid(todo_id):
-        return None
-
-    todo = todos_collection.find_one_and_update(
-        {"_id": ObjectId(todo_id)},
-        {"$set": update_data},
-        return_document = ReturnDocument.AFTER
-    )
-
-    if todo is None:
-        return None
-
-    todo["id"] = str(todo.pop("_id"))
-
-    return todo
-
-
-# 5 DELETE (delete todo):
-def delete_todo_service(todo_id):
-    if not ObjectId.is_valid(todo_id):
-        return False
+    # POST:
+    @staticmethod
+    def create_todo(new_todo):
     
+        if not new_todo or not new_todo.get("title"):
+                return jsonify({"error": "Title is required"}), 400
 
-    todo = todos_collection.find_one_and_delete({
-        "_id": ObjectId(todo_id)
-    })
+        result = TodosDal.create_todo(new_todo)
 
-    if todo is None:
-        return None
+        if result is None:
+            return jsonify({"success": False, "message": "Fail to create todo"}), 400
 
-    todo["id"] = str(todo.pop("_id"))
-
-    return todo
+        return jsonify({"success": True, "result": result}), 201
 
 
+    # PATCH:
+    @staticmethod
+    def update_todo(todo_id, todo_data):
+
+            if not todo_data:
+                return jsonify({"error": "Update data is required"}), 400
+        
+            allowed_fields = {"title", "description", "completed"}
+        
+            if not set(todo_data).issubset(allowed_fields):
+                return jsonify({"error": "Invalid fields"}), 400
+        
+            result = TodosDal.update_todo(todo_id, todo_data)
+            
+            if result is None:
+                return jsonify({"success": False, "error": "Not Found"}), 404
+
+            return jsonify({"success": True, "result": result}), 200
+
+
+    # DELETE:
+    @staticmethod
+    def delete_todo(todo_id):
+        result = TodosDal.delete_todo(todo_id)
+
+        if result is None:
+            return jsonify({"success": False, "error": "Not Found"}), 404
+        
+
+        return jsonify({"success": True, "result": result}), 200
