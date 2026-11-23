@@ -6,6 +6,7 @@ import { getAllTodos } from "../../services/todoService";
 import { useAtom } from "jotai";
 import { todosAtom } from "../../atoms/todoAtom";
 import { loadingAtom } from "../../atoms/loadingTom";
+import "./todoListDisplay.css"
 
 export default function TodoListDisplay() {
     const [todos, setTodos] = useAtom(todosAtom);
@@ -34,7 +35,7 @@ export default function TodoListDisplay() {
     <div className="todo-grid">
 
            {loading ? (<Spinner/>) : todos.map((todo: Todo) => (
-            <div className="todo-card" key={todo.id}>
+            <div id="todo_card" className={todo.completed ? "dun" : "waiting"} key={todo.id}>
                 <TodoCard todo={todo}/>
 
             </div>

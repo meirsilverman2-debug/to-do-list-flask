@@ -92,6 +92,8 @@
     background-color 0.2s ease,
     transform 0.2s ease,
     box-shadow 0.2s ease;
+
+    box-shadow: 0 0 8px rgb(242, 234, 243);
 }
 
 /* ==================
@@ -123,15 +125,17 @@ HOVER STATES
 ==================*/
 
 .btn-primary:hover {
-  background-color: #505577;
+ background: linear-gradient(purple, white, rgb(115, 32, 115), lightblue);
 }
 
 .btn-secondary:hover {
-  background-color: #6c9c84;
+  background-color: #00ffb7;
+  box-shadow: 0 0 10px  #00ffb7, 0 0 15px white;
 }
 
 .btn-danger:hover {
-  background-color: #c96850;
+  background-color: #ff0066;
+  box-shadow: 0 0 10px #ff0066, 0 0 15px white;
 }
 
 /* ===============
