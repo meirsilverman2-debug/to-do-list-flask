@@ -1,5 +1,5 @@
 import logging
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from services.todo_service import TodoSSercice
 
 logger = logging.getLogger(__name__)
@@ -24,13 +24,15 @@ def get_todo_by_id_route(todo_id):
 
 # POST create a new todo:
 @todo_bp.route("/", methods=["POST"])
-def create_todo_route(todo):
+def create_todo_route():
+    todo = request.get_json()
     return TodoSSercice.create_todo(todo)
 
 
 # PATCH (update on existing todo)
 @todo_bp.route("/<todo_id>", methods=["PATCH"])
-def update_todo_route(todo_id, todo):
+def update_todo_route(todo_id):
+   todo = request.get_json()
    return TodoSSercice.update_todo(todo_id, todo)
 
 

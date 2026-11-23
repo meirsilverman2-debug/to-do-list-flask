@@ -37,6 +37,6 @@ export async function updateTodo(
 // POST (creating one new todo):
 export async function addTodo(todoData: Omit<Todo, "id">): Promise<Todo> {
   const response = await axios.post(`${API_URL}`, todoData);
-
+  console.log(response)
   return response.data;
 }
