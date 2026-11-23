@@ -1,15 +1,21 @@
-/* #todo_card{
+.dun{
     background: linear-gradient(to right, white, rgb(125, 76, 124), white, rgb(128, 54, 128));
     border-radius: 16px;
-    color: rgb(150, 63, 231);
+    color: rgb(25, 19, 32), rgb(171, 26, 190);
     box-shadow: 2px 2px 10px rgba(74, 71, 71, 0.512);
-} */
+}
 
+.waiting{
+    background: linear-gradient(to right, white, rgb(125, 76, 124), white, rgb(128, 54, 128));
+    border-radius: 16px;
+    color: rgb(25, 19, 32), rgb(218, 50, 244);
+    box-shadow: 2px 2px 10px rgba(74, 71, 71, 0.512);
+}
 
 .waiting:hover{
-    background: linear-gradient(to right, rgb(114, 77, 140), rgb(132, 87, 142));
+    background: linear-gradient(to right, white, rgb(125, 76, 124), white, rgb(77, 54, 128));
     border-radius: 16px;
-    color: rgb(150, 63, 231);
+    color: rgb(25, 19, 32), white;
     box-shadow: 2px 2px 10px rgba(74, 71, 71, 0.512);
 
   
@@ -20,6 +26,6 @@
     box-shadow: 2px 2px 10px gray;
     color: rgb(130, 95, 165);
     border-radius: 16px;
-    background: linear-gradient(to right, white, rgb(65, 11, 94));
+    background: linear-gradient(to right, white, rgb(125, 76, 124), white, rgb(7, 126, 120));
 
 }

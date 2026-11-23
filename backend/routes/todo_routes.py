@@ -1,5 +1,6 @@
 import logging
-from flask import Blueprint, jsonify, request
+
+from flask import Blueprint, request
 from services.todo_service import TodoSSercice
 
 logger = logging.getLogger(__name__)

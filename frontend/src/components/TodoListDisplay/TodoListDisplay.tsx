@@ -35,7 +35,7 @@ export default function TodoListDisplay() {
     <div className="todo-grid">
 
            {loading ? (<Spinner/>) : todos.map((todo: Todo) => (
-            <div id="todo_card" className={todo.completed ? "dun" : "waiting"} key={todo.id}>
+            <div  className={ todo.completed ? "dun" : "waiting"} key={todo.id}>
                 <TodoCard todo={todo}/>
 
             </div>
