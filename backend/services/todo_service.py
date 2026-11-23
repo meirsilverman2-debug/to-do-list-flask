@@ -1,5 +1,6 @@
-from flask import jsonify
 from DAL.todo_dal import TodosDal
+from flask import jsonify
+
 
 class TodoSSercice:
 
